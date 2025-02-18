@@ -1,8 +1,11 @@
+import Form from "./components/Form.jsx";
+
 function App() {
 
   return (
     <>
-      <h1>A</h1>
+      <h1>Articoli</h1>
+      <Form />
     </>
   )
 }
