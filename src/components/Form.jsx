@@ -16,7 +16,10 @@ export default function Form() {
         setArticles(updatedArticles);
         // pulisce l'input del form
         setNewArticle("");
+    }
 
+    function removeArticle(i) {
+        setArticles(articles.filter((articles, index) => index !== i));
     }
 
     return (
@@ -27,7 +30,7 @@ export default function Form() {
             </form>
 
             <ul>
-                {articles.map(el => <li>{el}</li>)}
+                {articles.map((el, index) => <li key={index}>{el} <button onClick={()=> removeArticle(index)}>elimina</button></li>)}
             </ul>
         </>
     )
