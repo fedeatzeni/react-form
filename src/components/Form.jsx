@@ -1,6 +1,10 @@
 import { useState } from "react";
 
-const startList = ["primo", "secondo", "terzo"]
+const startList = [
+    { id: 1, text: "primo" },
+    { id: 2, text: "secondo" },
+    { id: 3, text: "terzo" },
+]
 
 export default function Form() {
     // stati lista 
@@ -10,8 +14,9 @@ export default function Form() {
 
     function addArticle() {
         event.preventDefault();
+        let newobj = { id: articles.length + 1, text: newArticle }
         // crea un nuovo array con l'aggiunta di un elemento 
-        let updatedArticles = [...articles, newArticle];
+        let updatedArticles = [...articles, newobj];
         //aggiorna l'array
         setArticles(updatedArticles);
         // pulisce l'input del form
@@ -19,7 +24,7 @@ export default function Form() {
     }
 
     function removeArticle(i) {
-        setArticles(articles.filter((articles, index) => index !== i));
+        setArticles(articles.filter((article) => article.id !== i));
     }
 
     return (
@@ -30,7 +35,7 @@ export default function Form() {
             </form>
 
             <ul>
-                {articles.map((el, index) => <li key={index}>{el} <button onClick={()=> removeArticle(index)}>elimina</button></li>)}
+                {articles.map((el) => <li key={el.id}>{el.text} <button onClick={() => removeArticle(el.id)}>elimina</button></li>)}
             </ul>
         </>
     )
